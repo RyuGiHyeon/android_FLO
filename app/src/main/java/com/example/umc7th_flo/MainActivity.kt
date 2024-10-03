@@ -2,10 +2,7 @@ package com.example.umc7th_flo
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.umc7th_flo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private var song: Song = Song()
+    private var recentPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,32 +40,69 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.homeFragment -> {
                     supportFragmentManager.beginTransaction()
-//                        .setCustomAnimations(
-//
-//                        )
+                        .setCustomAnimations(
+                            R.anim.slide_left_in,
+                            R.anim.anim_fade_out
+                        )
                         .replace(R.id.main_frm, HomeFragment())
                         .commitAllowingStateLoss()
+                    recentPosition = 0
                     return@setOnItemSelectedListener true
                 }
 
                 R.id.lookFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, LookFragment())
-                        .commitAllowingStateLoss()
+                    if (recentPosition < 1) {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(
+                                R.anim.anim_slide_right_in,
+                                R.anim.anim_fade_out
+                            )
+                            .replace(R.id.main_frm, LookFragment())
+                            .commitAllowingStateLoss()
+                    } else {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(
+                                R.anim.slide_left_in,
+                                R.anim.anim_fade_out
+                            )
+                            .replace(R.id.main_frm, LookFragment())
+                            .commitAllowingStateLoss()
+                    }
+                    recentPosition = 1
                     return@setOnItemSelectedListener true
                 }
 
                 R.id.searchFragment -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, SearchFragment())
-                        .commitAllowingStateLoss()
+                    if (recentPosition < 2) {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(
+                                R.anim.anim_slide_right_in,
+                                R.anim.anim_fade_out
+                            )
+                            .replace(R.id.main_frm, SearchFragment())
+                            .commitAllowingStateLoss()
+                    } else {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(
+                                R.anim.slide_left_in,
+                                R.anim.anim_fade_out
+                            )
+                            .replace(R.id.main_frm, SearchFragment())
+                            .commitAllowingStateLoss()
+                    }
+                    recentPosition = 2
                     return@setOnItemSelectedListener true
                 }
 
                 R.id.lockerFragment -> {
                     supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.anim_slide_right_in,
+                            R.anim.anim_fade_out
+                        )
                         .replace(R.id.main_frm, LockerFragment())
                         .commitAllowingStateLoss()
+                    recentPosition = 3
                     return@setOnItemSelectedListener true
                 }
             }
