@@ -348,6 +348,8 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+
+<!--
         <ImageView
             android:id="@+id/home_banner_vp"
             android:layout_width="match_parent"
@@ -358,6 +360,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_today_music_oversea_hs"/>
+-->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/home_banner_vp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_today_music_oversea_hs" />
 
         <TextView
             android:id="@+id/home_daily_music_title_tv"

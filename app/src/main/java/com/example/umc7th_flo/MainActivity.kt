@@ -3,6 +3,7 @@ package com.example.umc7th_flo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.umc7th_flo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,14 +19,16 @@ class MainActivity : AppCompatActivity() {
 
         val song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString())
 
-        binding.mainPlayerCl.setOnClickListener {
-            val intent = Intent(this, SongActivity::class.java)
-        }
+        Log.d("Song", song.title + song.singer)
+
+//        binding.mainPlayerCl.setOnClickListener {
+//            startActivity(this, SongActivity::class.java)
+//        }
 
         binding.mainPlayerCl.setOnClickListener {
             val intent = Intent(this,SongActivity::class.java)
             intent.putExtra("title", song.title)
-            intent.putExtra("singer",song.singer)
+            intent.putExtra("singer", song.singer)
             startActivity(intent)
         }
 

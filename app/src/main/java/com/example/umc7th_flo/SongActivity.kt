@@ -17,6 +17,7 @@ class SongActivity : AppCompatActivity() {
         binding = ActivitySongBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 둘 다 존재 한다면 ~
         if(intent.hasExtra("title") && intent.hasExtra("singer")){
             binding.songMusicTitleTv.text = intent.getStringExtra("title")
             binding.songSingerNameTv.text = intent.getStringExtra("singer")
