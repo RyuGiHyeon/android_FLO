@@ -38,8 +38,6 @@ class SongActivity : AppCompatActivity() {
         binding.songRepeatIv.setOnClickListener {
 
         }
-
-
     }
 
     fun setPlayerStatus (isPlaying : Boolean){
