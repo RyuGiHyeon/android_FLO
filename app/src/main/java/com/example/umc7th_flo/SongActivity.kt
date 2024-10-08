@@ -35,6 +35,10 @@ class SongActivity : AppCompatActivity() {
             setPlayerStatus(true)
         }
 
+        binding.songRepeatIv.setOnClickListener {
+
+        }
+
 
     }
 
@@ -47,4 +51,10 @@ class SongActivity : AppCompatActivity() {
             binding.songPauseIv.visibility = View.VISIBLE
         }
     }
+
+//    fun setRepeatStatus (int: Int) {
+//        when (int) {
+//            1 ->
+//        }
+
 }
