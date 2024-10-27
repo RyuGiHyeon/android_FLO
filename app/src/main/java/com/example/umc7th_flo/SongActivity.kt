@@ -1,5 +1,6 @@
 package com.example.umc7th_flo
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ class SongActivity : AppCompatActivity() {
 
     //전역 변수
     lateinit var binding : ActivitySongBinding
+
+    private var isRepeatModeActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +39,12 @@ class SongActivity : AppCompatActivity() {
         }
 
         binding.songRepeatIv.setOnClickListener {
-
+            toggleRepeatMode()
         }
     }
 
-    fun setPlayerStatus (isPlaying : Boolean){
-        if(isPlaying){
+    private fun setPlayerStatus(isPlaying: Boolean) {
+        if (isPlaying) {
             binding.songMiniplayerIv.visibility = View.VISIBLE
             binding.songPauseIv.visibility = View.GONE
         } else {
@@ -50,9 +53,16 @@ class SongActivity : AppCompatActivity() {
         }
     }
 
-//    fun setRepeatStatus (int: Int) {
-//        when (int) {
-//            1 ->
-//        }
+    private fun toggleRepeatMode() {
+        if (isRepeatModeActive) {
+            // 반복 모드가 꺼져 있을 때 - 기본 색상으로 변경
+            binding.songRepeatIv.colorFilter = null;
+        } else {
+            // 반복 모드가 켜져 있을 때 - 파란색으로 변경
+            binding.songRepeatIv.setColorFilter(android.graphics.Color.BLUE, PorterDuff.Mode.SRC_IN) // 파란색 적용
+        }
+        isRepeatModeActive = !isRepeatModeActive // 상태 반전
+    }
+
 
 }

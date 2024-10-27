@@ -25,6 +25,15 @@ class HomeFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
 
+
+        val mainPannelVPAdapter = MainPannelVPAdapter(this)
+        mainPannelVPAdapter.addFragment(PannelFragment(R.drawable.img_first_album_default))
+        mainPannelVPAdapter.addFragment(PannelFragment(R.drawable.img_album_exp2))
+        binding.homePannelVp.adapter = mainPannelVPAdapter
+        binding.homePannelCircleIndicator.setViewPager(binding.homePannelVp)
+        binding.homePannelVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
         val bannerAdapter = BannerVPAdapter(this)
         bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
         bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2))
