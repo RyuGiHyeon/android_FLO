@@ -25,14 +25,16 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(this, SongActivity::class.java)
 //        }
 
+
         binding.mainPlayerCl.setOnClickListener {
-            val intent = Intent(this,SongActivity::class.java)
+            val intent = Intent(this, SongActivity::class.java)
             intent.putExtra("title", song.title)
             intent.putExtra("singer", song.singer)
             startActivity(intent)
         }
-
     }
+
+
 
     private fun initBottomNavigation(){
 
@@ -45,6 +47,10 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.homeFragment -> {
                     supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_left,
+                            R.anim.slide_in_right,
+                        )
                         .replace(R.id.main_frm, HomeFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
@@ -52,18 +58,30 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.lookFragment -> {
                     supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_right,
+                            R.anim.slide_in_right,
+                        )
                         .replace(R.id.main_frm, LookFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
                 R.id.searchFragment -> {
                     supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_left,
+                            R.anim.slide_in_left,
+                        )
                         .replace(R.id.main_frm, SearchFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
                 R.id.lockerFragment -> {
                     supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(
+                            R.anim.slide_in_right,
+                            R.anim.slide_in_left,
+                        )
                         .replace(R.id.main_frm, LockerFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true

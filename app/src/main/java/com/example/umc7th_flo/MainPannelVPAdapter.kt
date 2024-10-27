@@ -3,7 +3,7 @@ package com.example.umc7th_flo
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class BannerVPAdapter(fragment : Fragment) : FragmentStateAdapter(fragment) {
+class MainPannelVPAdapter(fragment : Fragment) : FragmentStateAdapter(fragment) {
 
     private val fragmentList : ArrayList<Fragment> = ArrayList()
 
@@ -13,6 +13,6 @@ class BannerVPAdapter(fragment : Fragment) : FragmentStateAdapter(fragment) {
 
     fun addFragment(fragment: Fragment) {
         fragmentList.add(fragment)
-        notifyItemInserted(fragmentList.size-1) // 뭔 소리야?
+        notifyItemInserted(fragmentList.size-1)
     }
 }
