@@ -5,8 +5,8 @@ package com.example.umc7th_flo
 
 data class Song(
     val title : String = "",
-    val singer : String = ""
-//    val startTime : String = "",
-//    val endTime : String = "",
-//    val isplaying : Boolean = false
+    val singer : String = "",
+    val second : Int = 0,
+    val playTime : Int = 0,
+    var isPlaying : Boolean = false
 )

@@ -12,15 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Umc7th_FLO">
         <activity
-            android:name=".SplashActivity"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
         <activity android:name="com.example.umc7th_flo.SongActivity"/>
     </application>
 
