@@ -3,22 +3,26 @@ package com.example.umc7th_flo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock.sleep
 import android.util.Log
 import com.example.umc7th_flo.databinding.ActivityMainBinding
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
+    private var song : Song = Song()
+    private var gson : Gson = Gson()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sleep(1000)
         setTheme(R.style.Theme_Umc7th_FLO)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initBottomNavigation()
-
-        val song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(), 0, 60, false)
 
         Log.d("Song", song.title + song.singer)
 
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("second", song.second)
             intent.putExtra("playTime", song.playTime)
             intent.putExtra("isPlaying", song.isPlaying)
+            intent.putExtra("music", song.music)
             startActivity(intent)
         }
     }
@@ -93,5 +98,26 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+    }
+
+    private fun setMiniPlayer(song : Song) {
+        binding.mainMiniplayerTitleTv.text = song.title
+        binding.mainMiniplayerSingerTv.text = song.singer
+        binding.mainMiniplayerProgressSb.progress = (song.second*100000)/song.playTime
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
+        val songJson = sharedPreferences.getString("songData", null)
+
+        song = if(songJson == null){
+            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
+        } else {
+            gson.fromJson(songJson, Song::class.java)
+        }
+
+
+        setMiniPlayer(song)
     }
 }
